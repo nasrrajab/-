@@ -12,5 +12,6 @@
     </div>
 </footer>
 
+<script src="\استعارة\assets\js\app.js"></script>
 </body>
 </html>
