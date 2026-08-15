@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $insert_stmt->execute();
 
                 $_SESSION['registrtion-success'] = 'تم التسجيل بنجاح! يمكنك الا تسجيل الدخول.';
-                header('location: login.pho');
+                header('location: login.php');
                 exit;
             }
 

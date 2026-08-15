@@ -8,7 +8,7 @@
 
 
     function is_logged_in() {
-        return isset($_SESSION['User_ID']);
+        return isset($_SESSION['User_ID']); //ترجع ترو او فولس
     }
 
 
@@ -64,10 +64,35 @@
 
     }
 
-    if (is_logged_in()) {
+    if (!defined('SESSION_TIMEOUT')) {
+        define('SESSION_TIMEOUT', 900); 
+    }
+
+    if(is_logged_in()) {
+        if (isset($_SESSION['lastActivity'])) {
+            $inactive = time() - $_SESSION['lastActivity'];
+            if ($inactive >= SESSION_TIMEOUT) {
+                
+                $_SESSION = array();
+                if (ini_get("session.use_cookies")) {
+                    $params = session_get_cookie_params();
+                    setcookie(session_name(), '', time() - 42000,
+                        $params["path"], $params["domain"],
+                        $params["secure"], $params["httponly"]
+                    );
+                }
+                session_destroy();
+                header('location: \استعارة\login.php?timeout=1');
+                exit;
+            }
+        }
+
+        $_SESSION['lastActivity'] = time();
+
         verify_active_session();
     }
     function is_admin() {
         return isset($_SESSION['UserRole']) && $_SESSION['UserRole'] === 'Admin';
     }
+    
 ?>

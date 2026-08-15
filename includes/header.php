@@ -76,7 +76,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                 <div class="role-badge role-<?php echo $_SESSION['UserRole']; ?>" style="display: inline-block; margin-top: 4px; padding: 2px 8px; font-size: 0.65rem; border-radius: 12px; font-weight: 700; text-transform: uppercase; line-height: 1.2;"><?php echo $_SESSION['UserRole'] === 'Admin' ? 'مسؤول (Admin)' : 'مستخدم نهائي (EndUser)'; ?></div>
                             </li>
                             <li style="list-style: none !important; list-style-type: none !important;">
-                                <a class="dropdown-item" href="<?php echo ($_SESSION['UserRole'] === 'Admin' ? '\استعارة\Admin\profile.php' : '\EndUser\profile.php'); ?>" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: #1e293b; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.25s ease;">
+                                <a class="dropdown-item" href="<?php echo ($_SESSION['UserRole'] === 'Admin' ? '\استعارة\Admin\profile.php' : '\استعارة\EndUser\profile.php'); ?>" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: #1e293b; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.25s ease;">
                                     <i class="fa-solid fa-user-gear" style="color: #4281a4; width: 16px;"></i> الملف الشخصي
                                 </a>
                             </li>

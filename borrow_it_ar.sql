@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2026 at 07:55 AM
+-- Generation Time: Aug 15, 2026 at 01:02 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -31,11 +31,19 @@ CREATE TABLE `borrowing` (
   `Borrowing_ID` int(11) NOT NULL,
   `Item_ID` int(11) NOT NULL,
   `User_ID` int(11) NOT NULL,
-  `StarDate` date NOT NULL,
+  `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
   `BorrowingStatus` varchar(20) NOT NULL,
   `CreateDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `borrowing`
+--
+
+INSERT INTO `borrowing` (`Borrowing_ID`, `Item_ID`, `User_ID`, `StartDate`, `EndDate`, `BorrowingStatus`, `CreateDate`) VALUES
+(3, 2, 2, '2026-08-08', '2026-09-05', 'Rejected', '2026-08-08'),
+(4, 2, 2, '2026-08-08', '2026-08-09', 'Approve', '2026-08-08');
 
 -- --------------------------------------------------------
 
@@ -45,8 +53,17 @@ CREATE TABLE `borrowing` (
 
 CREATE TABLE `categories` (
   `Category_ID` int(11) NOT NULL,
-  `category_Name` int(100) NOT NULL
+  `category_Name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`Category_ID`, `category_Name`) VALUES
+(1, 'كتب'),
+(2, 'معدات بناء'),
+(4, 'ادوات منزليه');
 
 -- --------------------------------------------------------
 
@@ -68,13 +85,20 @@ CREATE TABLE `items` (
   `AddedDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`Item_ID`, `User_ID`, `Category_ID`, `Title`, `Description`, `ItemCondition`, `MinBorrowDays`, `City`, `Status`, `AddedBy`, `AddedDate`) VALUES
+(2, 2, 1, 'كتاب', 'كتاب', 'New', 1, 'نابلس', 'Borrowed', 1, '2026-08-07');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_availablility`
+-- Table structure for table `item_availability`
 --
 
-CREATE TABLE `item_availablility` (
+CREATE TABLE `item_availability` (
   `ID` int(11) NOT NULL,
   `Item_ID` int(11) NOT NULL,
   `UnAvailableDate` date NOT NULL,
@@ -93,6 +117,13 @@ CREATE TABLE `item_images` (
   `ImageUrl` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `item_images`
+--
+
+INSERT INTO `item_images` (`Image_ID`, `Item_ID`, `ImageUrl`) VALUES
+(5, 2, '\\استعارة\\uploads\\item_6a75e8de596ae9.65788494.webp');
+
 -- --------------------------------------------------------
 
 --
@@ -101,13 +132,23 @@ CREATE TABLE `item_images` (
 
 CREATE TABLE `users` (
   `User_ID` int(11) NOT NULL,
-  `FullName` int(200) NOT NULL,
-  `Email` int(50) NOT NULL,
-  `PhoneNumber` int(20) DEFAULT NULL,
-  `Password` int(255) NOT NULL,
-  `UserRole` int(10) NOT NULL,
+  `FullName` varchar(200) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `PhoneNumber` varchar(20) DEFAULT NULL,
+  `Password` varchar(255) NOT NULL,
+  `UserRole` varchar(10) NOT NULL,
   `CreateDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`User_ID`, `FullName`, `Email`, `PhoneNumber`, `Password`, `UserRole`, `CreateDate`) VALUES
+(1, 'nasr', 'nasr@gmail.com', '566171655', '123456', 'Admin', '2026-07-18'),
+(2, 'ali', 'ali@gmail.com', '566171666', '1234567', 'EndUser', '2026-07-18'),
+(4, 'test', 'test@gmail.com', '0566991314', '123456', 'Admin', '2026-08-07'),
+(6, 'ahmad', 'ahmad@gmail.com', '0599887676', '123456', 'EndUser', '2026-08-07');
 
 --
 -- Indexes for dumped tables
@@ -137,9 +178,9 @@ ALTER TABLE `items`
   ADD KEY `AddedBy` (`AddedBy`);
 
 --
--- Indexes for table `item_availablility`
+-- Indexes for table `item_availability`
 --
-ALTER TABLE `item_availablility`
+ALTER TABLE `item_availability`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Item_ID` (`Item_ID`);
 
@@ -164,37 +205,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `borrowing`
 --
 ALTER TABLE `borrowing`
-  MODIFY `Borrowing_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Borrowing_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `Category_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Category_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `Item_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Item_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `item_availablility`
+-- AUTO_INCREMENT for table `item_availability`
 --
-ALTER TABLE `item_availablility`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `item_availability`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `item_images`
 --
 ALTER TABLE `item_images`
-  MODIFY `Image_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Image_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -216,10 +257,10 @@ ALTER TABLE `items`
   ADD CONSTRAINT `items_ibfk_3` FOREIGN KEY (`AddedBy`) REFERENCES `users` (`User_ID`);
 
 --
--- Constraints for table `item_availablility`
+-- Constraints for table `item_availability`
 --
-ALTER TABLE `item_availablility`
-  ADD CONSTRAINT `item_availablility_ibfk_1` FOREIGN KEY (`Item_ID`) REFERENCES `items` (`Item_ID`);
+ALTER TABLE `item_availability`
+  ADD CONSTRAINT `item_availability_ibfk_1` FOREIGN KEY (`Item_ID`) REFERENCES `items` (`Item_ID`);
 
 --
 -- Constraints for table `item_images`

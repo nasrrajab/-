@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Helper open modal
+//Helper open modal
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {

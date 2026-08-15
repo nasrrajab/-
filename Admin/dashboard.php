@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 $res = $config->query("SELECT COUNT(*) FROM items")->fetch_row();
 $total_items = $res ? intval($res[0]) : 0;
 
-$res = $config->query("SELECT COUNT(*) FROM borrowing WHERE BorrowingStatus = 'Approved'")->fetch_row();
+$res = $config->query("SELECT COUNT(*) FROM borrowing WHERE BorrowingStatus = 'Approve'")->fetch_row();
 $active_borrows = $res ? intval($res[0]) : 0;
 
 $res = $config->query("SELECT COUNT(*) FROM borrowing WHERE BorrowingStatus = 'Requested'")->fetch_row();
@@ -194,18 +194,18 @@ require_once __DIR__ . '\..\includes\header.php';
                                             $status_class = strtolower($row['BorrowingStatus']);
                                             $status_ar = [
                                                 'requested' => 'مطلوب',
-                                                'approved' => 'مقبول',
+                                                'approve' => 'مقبول',
                                                 'rejected' => 'مرفوض',
-                                                'returned' => 'مرتجع'
+                                                'return' => 'مرتجع'
                                             ][$status_class] ?? $row['BorrowingStatus'];
                                         ?>
                                         <span class="status-indicator status-<?php echo $status_class; ?>">
                                             <i class="fa-solid <?php 
                                                 switch($row['BorrowingStatus']) {
                                                     case 'Requested': echo 'fa-spinner fa-spin'; break;
-                                                    case 'Approved': echo 'fa-circle-check'; break;
+                                                    case 'Approve': echo 'fa-circle-check'; break;
                                                     case 'Rejected': echo 'fa-circle-xmark'; break;
-                                                    case 'Returned': echo 'fa-arrow-left-long'; break;
+                                                    case 'Return': echo 'fa-arrow-left-long'; break;
                                                 }
                                             ?>"></i>
                                             <?php echo htmlspecialchars($status_ar); ?>
@@ -226,7 +226,7 @@ require_once __DIR__ . '\..\includes\header.php';
                                                 <input type="hidden" name="action" value="reject">
                                                 <button type="submit" class="btn btn-secondary btn-sm" style="color: #ef4444; border-color: rgba(239,68,68,0.2);"><i class="fa-solid fa-xmark" style="margin-left: 5px;"></i> رفض</button>
                                             </form>
-                                        <?php elseif ($row['BorrowingStatus'] === 'Approved'): ?>
+                                        <?php elseif ($row['BorrowingStatus'] === 'Approve'): ?>
                                             <form action="dashboard.php" method="POST" style="display: inline;" data-confirm="هل تريد تحديد هذا العنصر كمرتجع؟">
                                                 <input type="hidden" name="borrow_id" value="<?php echo $row['Borrowing_ID']; ?>">
                                                 <input type="hidden" name="action" value="return">

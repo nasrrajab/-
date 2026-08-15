@@ -20,6 +20,11 @@ if (isset($_SESSION['registration_success'])){
     $success_msg = $_SESSION['registration_success'];
     unset($_SESSION['registration_success']);
 }
+
+if(isset($_GET['timeout']) ) {
+    $error_msg = 'انتهت صلاحية الجلسة. يرجى تسجيل الدخول مرة أخرى.';
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
@@ -36,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['User_ID'] = $user['User_ID'];
                 $_SESSION['FullName'] = $user['FullName'];
                 $_SESSION['UserRole'] = $user['UserRole'];
+                $_SESSION['last_activity'] = time(); // Update last activity time
 
                 //Redirect
                 if (isset($_SESSION['redirect_after_login'])) {
