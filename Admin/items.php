@@ -417,7 +417,7 @@ require_once __DIR__ . '/../includes/header.php';
             </div>
             
             <div class="form-group">
-                <label for="add_desc" class="form-label">الوصف</label>
+                <label for="add_desc" class="form-label">الوصف *</label>
                 <textarea name="description" id="add_desc" class="form-control" rows="3" placeholder="أخبر المستعيرين عن حالة العنصر، وما هو متضمن معها، وما إلى ذلك."></textarea>
             </div>
             
@@ -462,7 +462,7 @@ require_once __DIR__ . '/../includes/header.php';
             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="add_city" class="form-label">الموقع (المدينة)</label>
+                    <label for="add_city" class="form-label">الموقع (المدينة) * </label>
                     <input type="text" name="city" id="add_city" class="form-control" placeholder="مثال: طولكرم">
                 </div>
                 
@@ -501,7 +501,7 @@ require_once __DIR__ . '/../includes/header.php';
         
         <form action="items.php" method="POST" enctype="multipart/form-data" autocomplete="off" style="margin-top: 15px;">
             <input type="hidden" name="action" value="edit">
-            <input type="hidden" name="item_id" id="edit_item_id">
+            <input type="hidden" name="item_id" id="edit_item_id"> 
             
             <div class="form-group">
                 <label for="edit_title" class="form-label">عنوان العنصر *</label>

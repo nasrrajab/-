@@ -49,7 +49,7 @@ require_once __DIR__ . '\..\includes\header.php';
                         </td>
                         <td>
                             <a href="user_form.php?id=<?php echo $u['User_ID']; ?>" class="btn btn-secondary btn-sm">تعديل</a>
-                            <?php if ($u['User_ID'] !== $_SESSION['User_ID']): ?>
+                            <?php if ((int)$u['User_ID'] !== (int)$_SESSION['User_ID']): ?>
                                 <a href="user_action.php?action=delete&id=<?php echo $u['User_ID']; ?>" class="btn btn-danger btn-sm" data-confirm="تحذير: سيتم حذف المستخدم '<?php echo htmlspecialchars($u['FullName']); ?>' نهائياً مع جميع سجلات الاستعارة والعناصر الخاصة به. هذا الإجراء لا يمكن التراجع عنه.">حذف نهائي</a>
                             <?php else: ?>
                                 <span class="text-muted" style="font-size: 0.85rem; font-weight: 600; padding-right: 5px;">(حسابك الحالي)</span>
