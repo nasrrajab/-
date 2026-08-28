@@ -19,7 +19,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 </head>
 <body>
 
-<header>
+<header> 
     <div class="container nav-container">
         <a href="" class="logo" style="display: flex; align-items:center; gap: 10px" >
            <img src="\استعارة\assets\images\customer-service.png" alt="شعار استعرها" style="width: 60px; height: 60px; display: block; object-fit: contain; background: transparent; padding: 3px;"> 
@@ -29,6 +29,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
         <nav>
             <ul class="nav-links">
                 <?php if (!is_logged_in()): ?>
+                    <li class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>"><a href="\استعارة\index.php">الرئيسية</a></li> 
                     <li><a href="\استعارة\login.php" class="btn-nav">تسجيل الدخول</a></li>
                     <li><a href="\استعارة\register.php">إنشاء حساب</a></li>
                     <?php else: ?>

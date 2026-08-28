@@ -83,12 +83,12 @@ require_once __DIR__ . '\includes\header.php';
                 <label for="phone" class="form-label ">رقم الهاتف</label>
                 <input type="text" name="phone" id="phone" class="form-control" placeholder="+966500000000" value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>">
             </div>
-
-            <div class ="form-group" style="margin-bottom: 24px;">
-                <label for="password" class="form-label ">كلمة المرور  </label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="••••••••" required >
-            
-                 <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px">تسجيل الدخول</button>
+  <div class="form-group" style="margin-bottom: 24px;">
+                    <label for="password" class="form-label">كلمة المرور * (6 أحرف على الأقل)</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">تسجيل الحساب</button>
             </form>
 
             <div style="text-align: center; margin-top: 25px; font-size: 0.9rem">

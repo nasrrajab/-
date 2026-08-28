@@ -36,10 +36,10 @@ if ($item['Status'] !== 'Available') {
     exit;
 }
 
-// Calculate requested duration
+// Calculate requested duration (inclusive: same day = 1 day)
 $start_ts = strtotime($start_date);
 $end_ts = strtotime($end_date);
-$duration_days = ($end_ts - $start_ts) / 86400;
+$duration_days = (int)(($end_ts - $start_ts) / 86400) + 1;
 
 if ($start_ts > $end_ts) {
     $_SESSION['error'] = "يجب أن يكون تاريخ بدء الاستعارة قبل أو مساوياً لتاريخ الإرجاع.";
@@ -49,7 +49,7 @@ if ($start_ts > $end_ts) {
 
 // 2. Validate Minimum Days duration
 if ($duration_days < $item['MinBorrowDays']) {
-    $_SESSION['error'] = "الحد الأدنى لمدد الاستعارة لهذا العنصر هو {$item['MinBorrowDays']} أيام. طلبك كان لـ {$duration_days} أيام.";
+    $_SESSION['error'] = "مدة الاستعارة المطلوبة ({$duration_days} يوم/أيام) أقل من الحد الأدنى المسموح به لهذا العنصر ({$item['MinBorrowDays']} يوم/أيام). يرجى اختيار فترة أطول أو مساوية للحد الأدنى.";
     header("Location: item_detail.php?id=" . $item_id);
     exit;
 }

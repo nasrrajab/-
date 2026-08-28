@@ -41,6 +41,11 @@ $avail_stmt->execute();
 $blocked_dates = $avail_stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $avail_stmt->close();
 
+// Consume session flash messages
+$flash_error = $_SESSION['error'] ?? '';
+$flash_success = $_SESSION['success'] ?? '';
+unset($_SESSION['error'], $_SESSION['success']);
+
 $page_title = $item['Title'];
 require_once __DIR__ . '\..\includes\header.php';
 ?>
@@ -51,6 +56,19 @@ require_once __DIR__ . '\..\includes\header.php';
         <div style="margin-bottom: 25px;">
             <a href="dashboard.php" class="text-muted"><i class="fa-solid fa-arrow-right-long" style="margin-left: 5px;"></i> العودة إلى سوق الإعارة</a>
         </div>
+
+         <?php if (!empty($flash_error)): ?>
+            <div class="alert alert-danger">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <?php echo htmlspecialchars($flash_error); ?>
+            </div>
+        <?php endif; ?>
+        <?php if (!empty($flash_success)): ?>
+            <div class="alert alert-success">
+                <i class="fa-solid fa-circle-check"></i>
+                <?php echo htmlspecialchars($flash_success); ?>
+            </div>
+        <?php endif; ?>
 
         <div class="dashboard-grid">
             <!-- Left Column: Details & Images -->

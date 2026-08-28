@@ -15,7 +15,7 @@
     function require_login() {
         if (!is_logged_in()) {
             $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
-            header('location: استعارة\login.php');
+            header('location: \استعارة\login.php');
             exit;
         }
     }
